@@ -4,7 +4,6 @@ import numpy as np
 import joblib
 
 model = joblib.load('model.pkl')
-scaler = joblib.load('scaler.pkl')
 expected_columns = joblib.load('columns.pkl')
 
 st.set_page_config(
