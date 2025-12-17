@@ -94,3 +94,11 @@ The trained model was saved using **Joblib** and deployed via **Streamlit**.
 
 ## 📁 Project Structure
 
+heart-disease-prediction-using-machine-learning \
+├── app.py # Streamlit application \
+├── model.pkl # Trained Random Forest model \
+├── scaler.pkl # StandardScaler object \
+├── columns.pkl # Feature columns used during training \
+├── requirements.txt # Project dependencies \
+├── README.md # Project documentation \
+└── dataset.csv # Dataset used for training
