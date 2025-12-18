@@ -8,7 +8,7 @@ Built using **Python**, **Scikit-Learn**, and **Streamlit**.
 ## 🌐 Live Demo
 
 👉 **Streamlit App:**  
-https://sagar-46-heart-disease-prediction-using-machine-lear-app-eq7ixk.streamlit.app/
+https://sagar-46-heart-disease-prediction-using-machine-lear-app-xxtksk.streamlit.app/
 
 ---
 
