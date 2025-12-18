@@ -3,7 +3,8 @@ import pandas as pd
 import numpy as np
 import joblib
 
-model = joblib.load('model.pkl')
+model = joblib.load('RandomForest.pkl')
+scaler = joblib.load('scaler.pkl')
 expected_columns = joblib.load('columns.pkl')
 
 st.set_page_config(
@@ -58,37 +59,38 @@ high_ldl = map_yes[high_ldl]
 
 # Create Input array
 
-input_data = [
-    age,
-    gender,
-    blood_pressure,
-    cholesterol,
-    exercise,
-    smoking,
-    family_hd,
-    diabetes,
-    bmi,
-    high_bp,
-    low_hdl,
-    high_ldl,
-    alcohol,
-    stress,
-    sleep_hours,
-    sugar,
-    triglyceride,
-    fasting_bs,
-    crp,
-    homocysteine
-]
+input_df = pd.DataFrame([{
+    "Age": age,
+    "Gender": gender,
+    "Blood Pressure": blood_pressure,
+    "Cholesterol Level": cholesterol,
+    "Exercise Habits": exercise,
+    "Smoking": smoking,
+    "Family Heart Disease": family_hd,
+    "Diabetes": diabetes,
+    "BMI": bmi,
+    "High Blood Pressure": high_bp,
+    "Low HDL Cholesterol": low_hdl,
+    "High LDL Cholesterol": high_ldl,
+    "Alcohol Consumption": alcohol,
+    "Stress Level": stress,
+    "Sleep Hours": sleep_hours,
+    "Sugar Consumption": sugar,
+    "Triglyceride Level": triglyceride,
+    "Fasting Blood Sugar": fasting_bs,
+    "CRP Level": crp,
+    "Homocysteine Level": homocysteine
+}])
 
-input_df = pd.DataFrame([input_data], columns=expected_columns)
+input_df = input_df[expected_columns]
 
-# input_scaled = scaler.transform(input_df)
+input_scaled = scaler.transform(input_df)
 
-if st.button("🔍 Predict Heart Disease"):
-    prediction = model.predict(input_df)
-    # probability = model.predict_proba(input_df)
-    
+probability = model.predict_proba(input_scaled)[0][1]
+prediction = 1 if probability >= 0.35 else 0
+
+
+if st.button("🔍 Predict Heart Disease"):    
     if prediction == 1:
         st.error(
             f"⚠️ High Risk of Heart Disease\n\n"
